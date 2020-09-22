@@ -26,12 +26,12 @@ Terraform state is stored remotely in S3 and state locked in DynamoDB created in
 
 Each of the the envrionemts have separate branch:
 
-* [Staging](../stage/terraform.tfvars);
-* [Development](../dev/terraform.tfvars);
-* [Production](../master/terraform.tfvars).
+* [Staging](../stage/weissbeerger-s3/terraform.tfvars);
+* [Development](../dev/weissbeerger-s3/terraform.tfvars);
+* [Production](../master/weissbeerger-s3/terraform.tfvars).
 
 `index.html` differs per environment as well:
 
-* [Staging](../stage/assets/index.html);
-* [Development](../dev/assets/index.html);
-* [Production](../master/assets/index.html).
+* [Staging](../stage/weissbeerger-s3/assets/index.html);
+* [Development](../dev/weissbeerger-s3/assets/index.html);
+* [Production](../master/weissbeerger-s3/assets/index.html).
