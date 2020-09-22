@@ -22,7 +22,7 @@ Static website configuration is located in subfolder [weissbeerger-s3](../master
 
 Terraform state is stored remotely in S3 and state locked in DynamoDB created in section [Infrastructure](../master/README.md#infrastructure).
 
-## Envrionment separation
+## Environment separation
 
 Each of the the envrionemts have separate branch:
 
