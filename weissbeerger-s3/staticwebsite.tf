@@ -1,26 +1,5 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.7.0"
-    }
-  }
-
-  backend "s3" {
-    bucket         = "weissbeerger-state-lock"
-    key            = "state"
-    region         = "eu-west-3"
-    dynamodb_table = "weissbeerger-state-lock"
-  }
-}
-
-provider "aws" {
-  profile = "default"
-  region  = var.region
-}
-
 resource "aws_s3_bucket" "static_website" {
-  bucket = var.index_bucket
+  bucket = "${var.index_bucket}-${var.suffix}"
   acl    = "public-read"
 
   website {
@@ -28,20 +7,16 @@ resource "aws_s3_bucket" "static_website" {
   }
 
   tags = {
-    Name = "Weissbeerger static website"
+    Name = "Weissbeerger static website for ${var.suffix} environment"
   }
 }
 
 resource "aws_s3_bucket_object" "index" {
-  bucket       = var.index_bucket
+  bucket       = aws_s3_bucket.static_website.id
   key          = var.index_doc
-  source       = "nginx/${var.index_doc}"
+  source       = "assets/${var.index_doc}"
   acl          = "public-read"
   content_type = "text/html"
-
-  depends_on = [
-    aws_s3_bucket.static_website
-  ]
 
   tags = {
     Name = "Weissbeerger static index.html"
@@ -49,15 +24,11 @@ resource "aws_s3_bucket_object" "index" {
 }
 
 resource "aws_s3_bucket_object" "css" {
-  bucket       = var.index_bucket
+  bucket       = aws_s3_bucket.static_website.id
   key          = "css/${var.css}"
-  source       = "nginx/css/${var.css}"
+  source       = "assets/css/${var.css}"
   acl          = "public-read"
   content_type = "text/css"
-
-  depends_on = [
-    aws_s3_bucket.static_website
-  ]
 
   tags = {
     Name = "Weissbeerger static style.css"

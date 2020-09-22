@@ -13,3 +13,7 @@ variable "index_doc" {
 variable "css" {
   default = "style.css"
 }
+
+variable "suffix" {
+  description = "Environment suffix"
+}
