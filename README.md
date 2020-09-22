@@ -21,3 +21,17 @@ Static website configuration is located in subfolder [weissbeerger-s3](../master
 * `css/style.css` is uploaded to the bucket and is set to be pulicly available.
 
 Terraform state is stored remotely in S3 and state locked in DynamoDB created in section [Infrastructure](../master/README.md#infrastructure).
+
+## Envrionment separation
+
+Each of the the envrionemts have separate branch:
+
+* [Staging](../stage/terraform.tfvars);
+* [Development](../dev/terraform.tfvars);
+* [Production](../master/terraform.tfvars).
+
+`index.html` differs per environment as well:
+
+* [Staging](../stage/assets/index.html);
+* [Development](../dev/assets/index.html);
+* [Production](../master/assets/index.html).

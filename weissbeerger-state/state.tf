@@ -1,17 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.7.0"
-    }
-  }
-}
-
-provider "aws" {
-  profile = "default"
-  region  = var.region
-}
-
 resource "aws_s3_bucket" "state_lock_bucket" {
   bucket = var.infra_bucket
   acl    = "private"
