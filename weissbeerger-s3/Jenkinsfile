@@ -1,20 +1,22 @@
 pipeline{
     agent any
     environment{
-        TF_WORKSPACE = '${workspace}'
+        TF_WORKSPACE = ${workspace}
         TF_IN_AUTOMATION = 'true'
+        TERRAFORM_HOME = 'weissbeerger-s3'
     }
     stages{
-        stage('Switch to folder and TF init'){
+        stage('TF init'){
             steps{
                 withAWS(){
-                    sh 'cd weissbeerger-s3/ && terraform init'
+                    sh '${TERRAFORM_HOME}/terraform init'
                 }
             }
         }
+
         stage('TF apply'){
             steps{
-                sh 'terraform apply -auto-approve -var-file="${vars_file}"'
+                sh '${TERRAFORM_HOME}/terraform apply -var-file="${vars_file}"'
             }
         }
     }
