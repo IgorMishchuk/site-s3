@@ -15,7 +15,7 @@ pipeline{
 
         stage('TF apply'){
             steps{
-                sh 'cd weissbeerger-s3 && terraform apply -var-file="${vars_file}"'
+                sh 'cd weissbeerger-s3 && terraform apply -auto-approve -var-file="${vars_file}"'
             }
         }
     }
