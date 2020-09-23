@@ -1,0 +1,13 @@
+pipeline{
+    agent any
+    stages{
+        stage('Terraform'){
+            steps{
+                withAWS(){
+                    terraform init
+                    terraform apply -f -vars-file="${vars_file}"
+                }
+            }
+        }
+    }
+}
