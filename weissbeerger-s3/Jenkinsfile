@@ -4,8 +4,8 @@ pipeline{
         stage('Terraform'){
             steps{
                 withAWS(){
-                    terraform init
-                    terraform apply -f -var-file="${vars_file}"
+                    sh 'terraform init'
+                    sh 'terraform apply -f -var-file="${vars_file}"'
                 }
             }
         }
