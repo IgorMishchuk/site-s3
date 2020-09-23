@@ -4,7 +4,7 @@ pipeline{
         stage('Terraform'){
             steps{
                 withAWS(){
-                    sh 'cd weissbeerger-s3/ && terraform init && terraform apply -f -var-file="${vars_file}"'
+                    sh 'cd weissbeerger-s3/ && terraform init && terraform apply -auto-approve -var-file="${vars_file}"'
                 }
             }
         }
