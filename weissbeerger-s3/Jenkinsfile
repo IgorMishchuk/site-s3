@@ -3,20 +3,19 @@ pipeline{
     environment{
         TF_WORKSPACE = "${workspace}"
         TF_IN_AUTOMATION = 'true'
-        TERRAFORM_HOME = 'weissbeerger-s3'
     }
     stages{
         stage('TF init'){
             steps{
                 withAWS(){
-                    sh '${TERRAFORM_HOME}/terraform init'
+                    sh 'cd weissbeerger-s3 && terraform init'
                 }
             }
         }
 
         stage('TF apply'){
             steps{
-                sh '${TERRAFORM_HOME}/terraform apply -var-file="${vars_file}"'
+                sh 'cd weissbeerger-s3 && terraform apply -var-file="${vars_file}"'
             }
         }
     }
