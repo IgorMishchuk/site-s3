@@ -5,7 +5,7 @@ pipeline{
             steps{
                 withAWS(){
                     terraform init
-                    terraform apply -f -vars-file="${vars_file}"
+                    terraform apply -f -var-file="${vars_file}"
                 }
             }
         }
