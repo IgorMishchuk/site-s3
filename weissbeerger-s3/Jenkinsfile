@@ -1,11 +1,20 @@
 pipeline{
     agent any
+    environment{
+        TF_WORKSPACE = '${workspace}'
+        TF_IN_AUTOMATION = 'true'
+    }
     stages{
-        stage('Terraform'){
+        stage('Switch to folder and TF init'){
             steps{
                 withAWS(){
-                    sh 'cd weissbeerger-s3/ && terraform init && terraform workspace select stage && terraform apply -auto-approve -var-file="${vars_file}"'
+                    sh 'cd weissbeerger-s3/ && terraform init'
                 }
+            }
+        }
+        stage('TF apply'){
+            steps{
+                sh 'terraform apply -auto-approve -var-file="${vars_file}"'
             }
         }
     }
