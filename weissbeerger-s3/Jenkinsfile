@@ -5,9 +5,20 @@ pipeline{
         TF_IN_AUTOMATION = 'true'
     }
     stages{
-        stage('TF init'){
+        stage('TF init: non-Prod'){
+            when{ not {branch 'master'} }
             steps{
                 withAWS(){
+                    sh 'cd weissbeerger-s3 && terraform init'
+                }
+            }
+        }
+
+        stage('TF init: Prod'){
+            when{branch 'master'}
+            steps{
+                withAWS(){
+                    sh 'export TF_WORKSPACE=prod'
                     sh 'cd weissbeerger-s3 && terraform init'
                 }
             }
