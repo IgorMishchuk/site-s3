@@ -16,16 +16,27 @@ pipeline{
 
         stage('TF init: Prod'){
             when{branch 'master'}
+            environment{
+                TF_WORKSPACE = 'prod'
+            }
             steps{
                 withAWS(){
-                    sh 'cd weissbeerger-s3 && terraform init && terraform workspace select prod'
+                    sh 'cd weissbeerger-s3 && export terraform init'
                 }
             }
         }
 
-        stage('TF apply'){
+        stage('TF apply: non-Prod'){
+            when{ not {branch 'master'} }
             steps{
                 sh 'cd weissbeerger-s3 && terraform apply -auto-approve -var-file="vars_${BRANCH_NAME}.tfvars"'
+            }
+        }
+
+        stage('TF apply: non-Prod'){
+            when{branch 'master'}
+            steps{
+                sh 'cd weissbeerger-s3 && terraform apply -auto-approve -var-file="vars_prod.tfvars"'
             }
         }
     }
