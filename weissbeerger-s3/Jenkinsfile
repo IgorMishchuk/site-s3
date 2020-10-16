@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        TF_WORKSPACE = "${workspace}"
+        TF_WORKSPACE = "${BRANCH_NAME}"
         TF_IN_AUTOMATION = 'true'
     }
     stages{
@@ -15,7 +15,7 @@ pipeline{
 
         stage('TF apply'){
             steps{
-                sh 'cd weissbeerger-s3 && terraform apply -auto-approve -var-file="${vars_file}"'
+                sh 'cd weissbeerger-s3 && terraform apply -auto-approve -var-file="vars_${BRANCH_NAME}.tfvars"'
             }
         }
     }
