@@ -33,7 +33,7 @@ pipeline{
             }
         }
 
-        stage('TF apply: non-Prod'){
+        stage('TF apply: Prod'){
             when{branch 'master'}
             steps{
                 sh 'cd weissbeerger-s3 && terraform apply -auto-approve -var-file="vars_prod.tfvars"'
