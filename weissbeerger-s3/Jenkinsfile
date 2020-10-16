@@ -18,8 +18,7 @@ pipeline{
             when{branch 'master'}
             steps{
                 withAWS(){
-                    sh 'export TF_WORKSPACE=prod'
-                    sh 'cd weissbeerger-s3 && terraform init'
+                    sh 'cd weissbeerger-s3 && terraform init && terraform workspace select prod'
                 }
             }
         }
