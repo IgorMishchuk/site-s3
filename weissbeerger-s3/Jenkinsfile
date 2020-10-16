@@ -21,7 +21,7 @@ pipeline{
             }
             steps{
                 withAWS(){
-                    sh 'cd weissbeerger-s3 && export terraform init'
+                    sh 'cd weissbeerger-s3 && terraform init'
                 }
             }
         }
