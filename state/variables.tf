@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "infra_bucket" {
-  default = "tf-state-lock"
+  default = "tf-state-lock-1910"
 }
 
 variable "infra_ddb" {
