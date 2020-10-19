@@ -7,10 +7,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "weissbeerger-state-lock"
+    bucket         = "tf-state-lock"
     key            = "state.tfstate"
     region         = "eu-west-3"
-    dynamodb_table = "weissbeerger-state-lock"
+    dynamodb_table = "tf-state-lock"
   }
 }
 

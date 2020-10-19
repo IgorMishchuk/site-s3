@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "static_website" {
   }
 
   tags = {
-    Name = "Weissbeerger static website for ${var.suffix} environment"
+    Name = "Static website for ${var.suffix} environment"
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_s3_bucket_object" "index" {
   content_type = "text/html"
 
   tags = {
-    Name = "Weissbeerger static index.html"
+    Name = "Static index.html"
   }
 }
 
@@ -31,6 +31,6 @@ resource "aws_s3_bucket_object" "css" {
   content_type = "text/css"
 
   tags = {
-    Name = "Weissbeerger static style.css"
+    Name = "Static style.css"
   }
 }

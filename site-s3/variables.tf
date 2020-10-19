@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "index_bucket" {
-  default = "weissbeerger-s3"
+  default = "site-s3"
 }
 
 variable "index_doc" {
