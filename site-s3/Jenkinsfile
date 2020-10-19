@@ -8,14 +8,14 @@ pipeline{
         stage('TF init'){
             steps{
                 withAWS(){
-                    sh 'cd weissbeerger-s3 && terraform init'
+                    sh 'cd site-s3 && terraform init'
                 }
             }
         }
 
         stage('TF apply'){
             steps{
-                sh 'cd weissbeerger-s3 && terraform apply -auto-approve -var-file="vars_${BRANCH_NAME}.tfvars"'
+                sh 'cd site-s3 && terraform apply -auto-approve -var-file="vars_${BRANCH_NAME}.tfvars"'
             }
         }
     }

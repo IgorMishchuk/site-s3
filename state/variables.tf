@@ -3,9 +3,9 @@ variable "region" {
 }
 
 variable "infra_bucket" {
-  default = "weissbeerger-state-lock"
+  default = "tf-state-lock-1910"
 }
 
 variable "infra_ddb" {
-  default = "weissbeerger-state-lock"
+  default = "tf-state-lock"
 }
