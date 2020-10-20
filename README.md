@@ -6,7 +6,7 @@ This section is used to create an S3 bucket and DynamoDB table, which will store
 
 This can be done manually in AWS administrative account, yet for sake of example, it is done via Terraform in the same account as S3 static site.
 
-State lock configuration is located in subfolder [state](../master/state/infra.tf) and once applied will create next resources:
+State lock configuration is located in subfolder [state](../master/state/state.tf) and once applied will create next resources:
 
 * S3 bucket named `tf-state-lock` with versioning enabled;
 * DynamoDB table named `tf-state-lock` and configured according to Terraform [documentation](https://www.terraform.io/docs/backends/types/s3.html#dynamodb-state-locking).
